@@ -21,7 +21,13 @@ def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
 
 def get_users(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(User).offset(skip).limit(limit).all()
+    return (
+        db.query(User)
+        .order_by(User.id)  # ✅ Add this line
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
 
 def update_user(db: Session, user_id: int, user_update: UserUpdate):
     db_user = db.query(User).filter(User.id == user_id).first()
