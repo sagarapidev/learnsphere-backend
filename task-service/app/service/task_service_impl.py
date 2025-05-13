@@ -12,7 +12,7 @@ class TaskServiceImpl(ITaskService):
         return self.db.query(Task).all()
 
     def create_task(self, task_data: TaskCreate) -> Task:
-        task = Task(**task_data.dict())
+        task = Task(**task_data.model_dump())
         self.db.add(task)
         self.db.commit()
         self.db.refresh(task)
