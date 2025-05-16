@@ -5,4 +5,4 @@ __pycache__/
 .vscode/
 *.pyo
 *.pyd
-.vtas
+vtas/
